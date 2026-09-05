@@ -7,6 +7,7 @@ export const SITE_NAME = "fractions.fi Docs";
 export const SITE_TITLE = "fractions.fi Docs";
 export const SITE_DESCRIPTION =
   "How fractions.fi works: what an index is, how to buy, sell and create one, how the price and fees work, and where the contracts live.";
-export const X_URL = "https://x.com/fractionsfi";
-export const X_HANDLE = "@fractionsfi";
+/** The product's X account. */
+export const X_URL = (process.env.NEXT_PUBLIC_X_URL ?? "https://x.com/fractionsfi").replace(/\/$/, "");
+export const X_HANDLE = process.env.NEXT_PUBLIC_X_HANDLE ?? "@fractionsfi";
 export const OG_SIZE = { width: 1200, height: 630 } as const;

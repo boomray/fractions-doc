@@ -1,9 +1,10 @@
 import { BrandWordmark } from "@/components/brand/logo";
+import { XGlyph } from "@/components/brand/x-glyph";
 import { cn } from "@/lib/cn";
 import { APP_URL, X_HANDLE, X_URL } from "@/lib/site";
 
 const LINK_CLASS = cn(
-  "inline-flex min-h-8 items-center rounded-full text-sm text-[var(--color-foreground-secondary)]",
+  "inline-flex min-h-8 items-center gap-2 rounded-full text-sm text-[var(--color-foreground-secondary)]",
   "transition-colors duration-[var(--duration-fast)] ease-[var(--ease-out)] hover:text-[var(--color-foreground)]",
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-ring)]",
 );
@@ -31,7 +32,8 @@ export function SiteFooter() {
           <a href={APP_URL} target="_blank" rel="noreferrer noopener" className={LINK_CLASS}>
             Open the app
           </a>
-          <a href={X_URL} target="_blank" rel="noreferrer noopener" className={LINK_CLASS}>
+          <a href={X_URL} target="_blank" rel="noreferrer noopener" aria-label="fractions on X" className={LINK_CLASS}>
+            <XGlyph size={14} />
             {X_HANDLE} on X
           </a>
         </nav>

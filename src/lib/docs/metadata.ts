@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { DocPageMeta } from "./types";
-import { OG_SIZE, SITE_NAME } from "@/lib/site";
+import { OG_SIZE, SITE_NAME, X_HANDLE } from "@/lib/site";
 
 /**
  * Per-page metadata. Next merges segments shallowly, so a page that sets
@@ -25,6 +25,8 @@ export function docPageMetadata(meta: DocPageMeta, overrides: Metadata = {}): Me
     },
     twitter: {
       card: "summary_large_image",
+      site: X_HANDLE,
+      creator: X_HANDLE,
       title: meta.title,
       description: meta.description,
       images: [card],

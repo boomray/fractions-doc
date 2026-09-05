@@ -4,15 +4,18 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown } from "lucide-react";
+import { XGlyph } from "@/components/brand/x-glyph";
 import { Glyph } from "@/components/ui/icon";
 import { cn } from "@/lib/cn";
 import type { DocGroupNav } from "@/lib/docs/types";
 import { docIcon } from "./icons";
+import { X_URL } from "@/lib/site";
 
 /**
  * The left column: every group and page with the current page highlighted.
  * Below `lg` it folds into a single row — the current page's name with a
- * chevron — that opens the same list as a glass sheet.
+ * chevron — that opens the same list as a glass sheet. A row linking to the
+ * product's X account sits under the page list in both.
  */
 export function DocsSidebar({ nav }: { nav: DocGroupNav[] }) {
   const pathname = usePathname();
@@ -57,12 +60,29 @@ export function DocsSidebar({ nav }: { nav: DocGroupNav[] }) {
     </nav>
   );
 
+  const elsewhere = (
+    <a
+      href={X_URL}
+      target="_blank"
+      rel="noreferrer noopener"
+      className={cn(
+        "flex items-center gap-2.5 rounded-[var(--radius-menu-item)] px-2.5 py-1.5 text-sm",
+        "text-[var(--color-foreground-secondary)] transition-colors duration-[var(--duration-fast)] ease-[var(--ease-out)]",
+        "hover:bg-[var(--color-fill-control)] hover:text-[var(--color-foreground)]",
+      )}
+    >
+      <XGlyph size={14} className="opacity-70" />
+      <span className="min-w-0 truncate">fractions on X</span>
+    </a>
+  );
+
   return (
     <>
       {/* Wide: a sticky column under the 64px bar. */}
       <aside className="hidden lg:block">
         <div className="scroll-pane sticky top-[80px] flex max-h-[calc(100dvh-96px)] flex-col gap-5 overflow-y-auto pb-6">
           {list}
+          {elsewhere}
         </div>
       </aside>
 
@@ -86,8 +106,9 @@ export function DocsSidebar({ nav }: { nav: DocGroupNav[] }) {
             className={cn("opacity-60 transition-transform duration-[var(--duration-fast)]", open && "rotate-180")}
           />
         </button>
-        <div id="docs-mobile-nav" hidden={!open} className="glass-surface mt-2 rounded-[var(--radius-card)] p-3">
+        <div id="docs-mobile-nav" hidden={!open} className="glass-surface mt-2 flex flex-col gap-5 rounded-[var(--radius-card)] p-3">
           {list}
+          {elsewhere}
         </div>
       </div>
     </>
