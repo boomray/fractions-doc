@@ -35,6 +35,14 @@ export function wordmarkDataUri(): Promise<string> {
 export const MARK_RATIO = 846 / 922;
 export const WORDMARK_RATIO = 1430 / 666;
 
-/** The light page with the faint lime tint, so the white marks lift off it. */
-export const OG_BACKGROUND =
-  "radial-gradient(circle at 12% 0%, rgba(212,252,80,0.22), rgba(0,0,0,0) 46%), linear-gradient(145deg, #f7f9ef 0%, #f4f4f4 60%)";
+/**
+ * The share cards are dark, unlike the pages: a plain near-black plate, the
+ * white wordmark, light copy. No gradient and no shadow — `next/og` has no
+ * `filter`, and the wordmark needs no lift on this ground.
+ */
+export const OG_COLORS = {
+  background: "#111111",
+  foreground: "#f2f2f2",
+  muted: "rgba(242,242,242,0.58)",
+  accent: "#d4fc50",
+} as const;

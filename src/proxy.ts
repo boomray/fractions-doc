@@ -22,11 +22,12 @@ import { GATE_COOKIE, gateToken, safeEqual } from "@/lib/site-gate";
 /**
  * What a crawler, a link unfurler or a browser needs BEFORE anyone types the
  * password: robots, the sitemap, the manifest, the favicons and the OpenGraph
- * cards. None of them carry page content, and a gated OpenGraph card is a
- * broken image on every shared link.
+ * cards (the site's at `/opengraph-image`, each page's at `/og/<id>`). None of
+ * them carry page content beyond a title and a one-line description, and a
+ * gated OpenGraph card is a broken image on every shared link.
  */
 const PUBLIC_ASSET =
-  /^\/(robots\.txt|sitemap\.xml|manifest\.webmanifest|icon(-[a-z0-9]+)?(\.png|\.svg)?|apple-icon(-[a-z0-9]+)?(\.png)?)$|\/(opengraph-image|twitter-image)(-[a-z0-9]+)?(\.png)?$/;
+  /^\/(robots\.txt|sitemap\.xml|manifest\.webmanifest|icon(-[a-z0-9]+)?(\.png|\.svg)?|apple-icon(-[a-z0-9]+)?(\.png)?)$|\/(opengraph-image|twitter-image)(-[a-z0-9]+)?(\.png)?$|^\/og\/[a-z0-9-]+\/[a-z0-9-]+$/;
 
 export async function proxy(request: NextRequest) {
   // The public launch switch. Explicit and loud: the gate is off only when
