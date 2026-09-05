@@ -1,0 +1,333 @@
+@import "tailwindcss";
+
+/* Dark is stamped on <html> as `data-theme="dark"` (see components/layout/theme.ts). */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ── fractions.fi design tokens ───────────────────────────────────────────────
+ *
+ * LIGHT IS THE DEFAULT. Every token is defined once on bare `:root` in its
+ * light value; dark only ever redefines, under `[data-theme="dark"]`. A colour
+ * whose only definition lives in a theme block is a bug.
+ *
+ * A flat #f4f4f4 page, white panels, #111 ink at three opacities, one lime
+ * accent, big radii, faint layered shadows, short eased-out motion. The same
+ * tokens the app reads, so the docs and the app feel like one product.
+ * ------------------------------------------------------------------------- */
+
+@theme {
+  /* ── type ── */
+
+  /* Inter everywhere. Headings are bigger, not bolder; numbers are the same
+   * face with tabular figures (`.num`). No display or mono voice. */
+  --font-sans: var(--font-sans-face), "Inter Variable", Inter, system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-sans);
+
+  --text-2xs: 0.6875rem; /* 11px */
+  --text-2xs--line-height: 1.45;
+  --text-xs: 0.75rem; /* 12px */
+  --text-xs--line-height: 1.5;
+  --text-sm: 0.8125rem; /* 13px */
+  --text-sm--line-height: 1.5;
+  --text-base: 0.875rem; /* 14px */
+  --text-base--line-height: 1.55;
+  --text-md: 1rem; /* 16px */
+  --text-md--line-height: 1.55;
+  --text-lg: 1.125rem; /* 18px */
+  --text-lg--line-height: 1.45;
+  --text-xl: 1.375rem; /* 22px — section title */
+  --text-xl--line-height: 1.3;
+  --text-2xl: 1.75rem; /* 28px */
+  --text-2xl--line-height: 1.2;
+  --text-3xl: 2.25rem; /* 36px */
+  --text-3xl--line-height: 1.05;
+
+  /* ── radius ──
+   * Cards and panels take a moderate radius; only badges, chips, buttons and
+   * segmented controls are full pills. */
+  --radius-card: 16px;
+  --radius-panel: 20px;
+  --radius-float: 20px;
+  --radius-glass: 20px;
+  --radius-input: 12px;
+  --radius-menu-item: 10px;
+  --radius-pill: 999px;
+  --radius-control: 12px;
+
+  /* ── motion ── */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-instant: 100ms;
+  --duration-fast: 180ms;
+  --duration-normal: 280ms;
+  --duration-theme: 420ms;
+
+  /* ── elevation ──
+   *
+   * NO OUTLINES. Every surface is glass: a translucent fill, a light inner
+   * highlight along the top edge, a soft inner shade along the bottom edge,
+   * and a faint outer shadow for lift. The inset pair is baked into every
+   * shadow token so a `shadow-*` utility never strips it. */
+  --glass-highlight: inset 0 1px 0 rgb(255 255 255 / 0.7), inset 0 -1px 0 rgb(0 0 0 / 0.06);
+  /* A recessed well (inputs, pill-group tracks): the pair inverted. */
+  --glass-inset: inset 0 1px 0 rgb(0 0 0 / 0.05), inset 0 -1px 0 rgb(255 255 255 / 0.6);
+  --shadow-card: var(--glass-highlight), 0 2px 12px rgb(17 17 17 / 0.05);
+  --shadow-soft: var(--glass-highlight), 0 4px 24px rgb(17 17 17 / 0.06);
+  --shadow-float:
+    var(--glass-highlight), 0 1px 2px rgb(17 17 17 / 0.04), 0 8px 24px rgb(17 17 17 / 0.07),
+    0 24px 48px rgb(17 17 17 / 0.05);
+  --shadow-glass: var(--glass-highlight);
+  --shadow-button-glow: 0 8px 24px rgb(212 252 80 / 0.35);
+  --shadow-pill: var(--glass-highlight), 0 1px 2px rgb(0 0 0 / 0.06);
+
+  /* ── colour, light ── */
+
+  --color-background: #f4f4f4;
+  --color-surface: #ffffff;
+  --color-surface-raised: #ffffff;
+  --color-surface-sunken: #ececec;
+  /* Cards are translucent white on the page grey. */
+  --color-card: rgb(255 255 255 / 0.72);
+  --color-card-nested: #ececec;
+  --color-overlay: #ffffff;
+  /* Floats over content: more translucent, blurred. */
+  --color-glass: rgb(255 255 255 / 0.6);
+
+  /* ink */
+  --color-foreground: #111111;
+  --color-foreground-secondary: rgb(17 17 17 / 0.55);
+  --color-foreground-muted: rgb(17 17 17 / 0.4);
+
+  /* fills: controls sit on the ink at low opacity */
+  --color-fill-control: rgb(17 17 17 / 0.05);
+  --color-fill-control-hover: rgb(17 17 17 / 0.09);
+  --color-fill-input: rgb(17 17 17 / 0.035);
+
+  /* rules — dividers only (table rows), never an outline */
+  --color-border: rgb(17 17 17 / 0.08);
+  --color-border-strong: rgb(17 17 17 / 0.22);
+
+  /* accent */
+  --color-accent: #d4fc50;
+  --color-accent-hover: #c4ef3c;
+  --color-accent-subtle: #f3ffd4;
+  --color-accent-mid: #e5f99a;
+  --color-accent-foreground: #111111;
+  /* Lime as ink (small accent text, the active TOC rule). The pill colour
+   * itself is unreadable as text on white. */
+  --color-accent-text: #6f9f18;
+  --color-ring: #d4fc50;
+
+  /* status */
+  --color-warning: #a8730a;
+  --color-warning-subtle: rgb(184 134 11 / 0.12);
+  --color-danger: #ff3b30;
+  --color-danger-subtle: rgb(255 59 48 / 0.1);
+  --color-info-subtle: rgb(17 17 17 / 0.05);
+}
+
+/* ── DARK: redefinitions only. Every name above already exists. ──────────── */
+
+@layer theme {
+  [data-theme="dark"] {
+    color-scheme: dark;
+
+    --color-background: #0d0d0d;
+    --color-surface: #161616;
+    --color-surface-raised: #1c1c1c;
+    --color-surface-sunken: #111111;
+    --color-card: rgb(22 22 22 / 0.72);
+    --color-card-nested: #1f1f1f;
+    --color-overlay: #1c1c1c;
+    --color-glass: rgb(22 22 22 / 0.6);
+
+    --color-foreground: #f2f2f2;
+    --color-foreground-secondary: rgb(242 242 242 / 0.58);
+    --color-foreground-muted: rgb(242 242 242 / 0.42);
+
+    --color-fill-control: rgb(255 255 255 / 0.06);
+    --color-fill-control-hover: rgb(255 255 255 / 0.1);
+    --color-fill-input: rgb(255 255 255 / 0.04);
+
+    --color-border: rgb(255 255 255 / 0.1);
+    --color-border-strong: rgb(255 255 255 / 0.24);
+
+    --color-accent: #d4fc50;
+    --color-accent-hover: #c4ef3c;
+    --color-accent-subtle: rgb(212 252 80 / 0.14);
+    --color-accent-mid: rgb(212 252 80 / 0.28);
+    --color-accent-foreground: #111111;
+    --color-accent-text: #d4fc50;
+    --color-ring: #d4fc50;
+
+    --color-warning: #e2b23a;
+    --color-warning-subtle: rgb(226 178 58 / 0.14);
+    --color-danger: #ff453a;
+    --color-danger-subtle: rgb(255 69 58 / 0.14);
+    --color-info-subtle: rgb(255 255 255 / 0.06);
+
+    --glass-highlight: inset 0 1px 0 rgb(255 255 255 / 0.06), inset 0 -1px 0 rgb(0 0 0 / 0.4);
+    --glass-inset: inset 0 1px 0 rgb(0 0 0 / 0.4), inset 0 -1px 0 rgb(255 255 255 / 0.05);
+    --shadow-card: var(--glass-highlight), 0 2px 12px rgb(0 0 0 / 0.3);
+    --shadow-soft: var(--glass-highlight), 0 4px 24px rgb(0 0 0 / 0.35);
+    --shadow-float:
+      var(--glass-highlight), 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.4),
+      0 24px 48px rgb(0 0 0 / 0.35);
+    --shadow-glass: var(--glass-highlight);
+    --shadow-pill: var(--glass-highlight), 0 1px 2px rgb(0 0 0 / 0.4);
+  }
+}
+
+/* The card: translucent white with the glass inset pair and the soft card
+ * shadow. No outline. Nested cards read `--card-bg`, which the rule in
+ * @layer base re-binds to the grey nested panel. */
+@utility card-surface {
+  background-color: var(--card-bg, var(--color-card));
+  box-shadow: var(--shadow-card);
+}
+
+/* Section panel: the card at the panel radius. */
+@utility panel-surface {
+  background-color: var(--color-card);
+  border-radius: var(--radius-float);
+  box-shadow: var(--shadow-card);
+}
+
+/* Glass: floats, menus and the sticky bar — translucent, blurred, lifted. */
+@utility glass-surface {
+  background-color: var(--color-glass);
+  box-shadow: var(--shadow-float);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  backdrop-filter: blur(20px) saturate(1.4);
+}
+
+/* A recessed well: inputs, the pill-group track. */
+@utility well-surface {
+  background-color: var(--color-fill-input);
+  box-shadow: var(--glass-inset);
+}
+
+/* The neutral control fill: 5% ink, 9% on hover. */
+@utility fill-control {
+  background-color: var(--color-fill-control);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    position: relative;
+    min-height: 100dvh;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    font-weight: 400;
+    letter-spacing: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* The theme switch cross-fades the page ground. */
+    transition:
+      background-color var(--duration-theme) var(--ease-out),
+      color var(--duration-theme) var(--ease-out);
+  }
+
+  /* letter-spacing: 0 everywhere — headings are bigger, not tighter. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+
+  /* Numbers: the same face with tabular figures. */
+  .num,
+  code,
+  kbd,
+  samp {
+    font-family: var(--font-sans);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0;
+  }
+
+  *,
+  *::before,
+  *::after {
+    border-color: var(--color-border);
+  }
+
+  /* Surfaces are glass; borders are dividers only. */
+  hr {
+    border: 0;
+    height: 1px;
+    background-color: var(--color-border);
+  }
+
+  /* Every descendant of a card has --card-bg re-bound to the nested value, so
+   * card depth is positional and no call site has to know it is nested. */
+  .card-surface > *,
+  .panel-surface > * {
+    --card-bg: var(--color-card-nested);
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-accent-foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 3px;
+  }
+
+  button:not(:disabled),
+  a[href],
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+
+  .scroll-pane {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scroll-pane::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  html,
+  body {
+    overflow-x: clip;
+  }
+}
+
+@layer utilities {
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
