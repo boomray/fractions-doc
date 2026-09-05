@@ -50,7 +50,7 @@ export const SELL_FEE_SPLIT = {
 } as const;
 
 /** Creating an index needs real money behind it. */
-export const CREATE_MIN_DEPOSIT_WEI = 5n * 10n ** 16n; // 0.05 ETH
+export const CREATE_MIN_DEPOSIT_WEI = 3n * 10n ** 15n; // 0.003 ETH
 /** Share of the creation deposit that buys $FRACTIONS (and burns it). */
 export const CREATE_PROTOCOL_BPS = 1_000;
 

@@ -28,7 +28,7 @@ import { APP_URL } from "@/lib/site";
  * `lib/economics.ts` says today, so the docs cannot drift from the product.
  *
  * Four namespaces:
- *   ECON  — economics, formatted for a sentence ("2%", "0.05 ETH", "1B")
+ *   ECON  — economics, formatted for a sentence ("2%", "0.003 ETH", "1B")
  *   CHAIN — the chain facts (id, RPC, explorer, the exchange's addresses)
  *   APP   — where the app lives, so a page can link to it
  *   BLOCK — whole HTML blocks built from code (tables that must never drift)
@@ -78,7 +78,12 @@ export const CHAIN_FACTS = {
   id: robinhoodMainnet.id,
   rpc: robinhoodMainnet.rpcUrls.default.http[0]!,
   explorer: robinhoodMainnet.blockExplorers.default.url,
+  /** Uniswap V2 router. */
   router: "0x89e5db8b5aa49aa85ac63f691524311aeb649eba",
+  /** Uniswap V3: the swap router, the pool factory and the quoter. */
+  v3Router: "0xcaf681a66d020601342297493863e78c959e5cb2",
+  v3Factory: "0x1f7d7550B1b028f7571E69A784071F0205FD2EfA",
+  v3Quoter: "0x33e885ed0ec9bf04ecfb19341582aadcb4c8a9e7",
   weth: "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
   usdg: "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
 } as const;
@@ -89,6 +94,9 @@ export const CHAIN: Record<string, string> = {
   RPC: CHAIN_FACTS.rpc,
   EXPLORER: CHAIN_FACTS.explorer,
   ROUTER: CHAIN_FACTS.router,
+  V3_ROUTER: CHAIN_FACTS.v3Router,
+  V3_FACTORY: CHAIN_FACTS.v3Factory,
+  V3_QUOTER: CHAIN_FACTS.v3Quoter,
   WETH: CHAIN_FACTS.weth,
   USDG: CHAIN_FACTS.usdg,
 };
@@ -177,7 +185,10 @@ function chainFactsBlock(): string {
       ["Chain id", `<span class="num">${CHAIN_FACTS.id}</span>`],
       ["RPC", link(CHAIN_FACTS.rpc)],
       ["Explorer", link(CHAIN_FACTS.explorer)],
-      ["Exchange router (Uniswap V2)", explorerLink(CHAIN_FACTS.router)],
+      ["Uniswap V2 router", explorerLink(CHAIN_FACTS.router)],
+      ["Uniswap V3 swap router (SwapRouter02)", explorerLink(CHAIN_FACTS.v3Router)],
+      ["Uniswap V3 factory", explorerLink(CHAIN_FACTS.v3Factory)],
+      ["Uniswap V3 quoter (QuoterV2)", explorerLink(CHAIN_FACTS.v3Quoter)],
       ["Wrapped ETH", explorerLink(CHAIN_FACTS.weth, "token")],
       ["USDG", explorerLink(CHAIN_FACTS.usdg, "token")],
     ],

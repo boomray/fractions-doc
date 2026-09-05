@@ -11,7 +11,7 @@ Creating an index takes a few minutes and one transaction. You need a wallet con
 
 1. **Open [Create]({{APP.URL}}/create).** You can start with an empty basket or, further down this page, from a wallet address.
 
-2. **Choose the tokens.** Search by name or ticker. Only tokens that trade on the chain's exchange can go in, because the vault has to be able to buy and sell them. Pick between {{ECON.MIN_TOKENS}} and {{ECON.MAX_TOKENS}}.
+2. **Choose the tokens.** Search by name or ticker. Only tokens with a Uniswap V2 or V3 pool with WETH or USDG can go in, because the vault has to be able to buy and sell them. Pick between {{ECON.MIN_TOKENS}} and {{ECON.MAX_TOKENS}}.
 
 3. **Set the weights.** Each token gets a share of the whole; the shares must add up to everything, and none may be above {{ECON.MAX_WEIGHT}}. The page shows a live preview of the basket and its risk score as you adjust. See [Risk score](/use-it/risk-score) for what the number means.
 
@@ -31,7 +31,7 @@ Any {{CHAIN.NAME}} address can become an index draft: yours, a friend's, or one 
 
 1. **Paste an address** into the "Start from a wallet" box on the Create page, or open the link `/create?wallet=0x…` with the address filled in.
 
-2. **The app keeps the eligible tokens.** Tokens that do not trade on the chain's exchange are left out, and so are holdings too small to price. What remains is weighted by value, the way the wallet is, with no token above {{ECON.MAX_WEIGHT}}; anything over the cap is spread across the rest in proportion. At most {{ECON.MAX_TOKENS}} tokens make it in.
+2. **The app keeps the eligible tokens.** Tokens without a Uniswap V2 or V3 pool with WETH or USDG are left out, and so are holdings too small to price. What remains is weighted by value, the way the wallet is, with no token above {{ECON.MAX_WEIGHT}}; anything over the cap is spread across the rest in proportion. At most {{ECON.MAX_TOKENS}} tokens make it in.
 
 3. **A name is suggested.** The draft is called "`<short address>` mirror", with the address shortened to its first and last characters. Rename it after whoever the wallet belongs to, or whatever the idea is.
 

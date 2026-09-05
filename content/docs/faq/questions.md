@@ -21,7 +21,7 @@ Yes, in theory. Each index has {{ECON.INDEX_SUPPLY}} tokens and hands them out a
 
 ### Can I always sell?
 
-Yes, as long as the basket's tokens can be sold on the exchange, which is a condition of being in an index in the first place. Selling a very large position in an index built from thinly traded tokens can get a worse price than the quote suggests; the risk score's liquidity factor warns about this.
+Yes, as long as the basket's tokens can be sold on their Uniswap V2 or V3 pool, which is a condition of being in an index in the first place. Selling a very large position in an index built from thinly traded tokens can get a worse price than the quote suggests; the risk score's liquidity factor warns about this.
 
 ## About money
 
@@ -40,6 +40,18 @@ In ETH, from {{ECON.BUY_FEE_CREATOR}} of every buy and {{ECON.SELL_FEE_CREATOR}}
 ### What is the minimum to create an index?
 
 {{ECON.CREATE_MIN_DEPOSIT}}. {{ECON.CREATE_BASKET}} of it buys the basket as your first position; {{ECON.CREATE_PROTOCOL}} buys and burns $FRACTIONS.
+
+### Which tokens can go in an index?
+
+Any token on {{CHAIN.NAME}} with a Uniswap V2 or V3 pool with WETH or USDG. The vault has to be able to buy and sell every token in the basket, and those pools are where it does so. See [Create an index](/use-it/create-an-index).
+
+### Who made the first indexes?
+
+The protocol did. It launched with ten indexes it created itself, each with the minimum deposit of {{ECON.CREATE_MIN_DEPOSIT}}, so there was something to look at and trade on day one. They follow the same rules as any index made by anyone else.
+
+### Are the contracts audited?
+
+Not yet. They have unit tests, fork tests against the real Uniswap routers on {{CHAIN.NAME}} and size checks, but no outside audit. Only put in what you can afford to lose. See [Security and audits](/protocol/security-and-audits).
 
 ## About the risk score
 

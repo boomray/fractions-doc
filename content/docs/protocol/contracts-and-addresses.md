@@ -1,6 +1,6 @@
 ---
 title: Contracts and addresses
-description: The chain, the exchange the vaults trade on, and where each protocol contract lives.
+description: The chain, the Uniswap V2 and V3 contracts the vaults trade through, and where each protocol contract lives.
 icon: FileCode2
 order: 4
 ---
@@ -11,7 +11,7 @@ Everything on fractions.fi runs on {{CHAIN.NAME}}, and every action you take is 
 
 {{BLOCK.chain-facts}}
 
-Add the network to a wallet with the chain id and RPC above; the app also offers to add it the first time you connect. Vaults buy and sell through the exchange router listed, which is where the basket's tokens trade. Wrapped ETH is the form of ETH the exchange understands, and USDG is the dollar-pegged token used to price things in dollars.
+Add the network to a wallet with the chain id and RPC above; the app also offers to add it the first time you connect. Vaults buy and sell through the Uniswap routers listed: the V2 router for tokens in a V2 pool, and the V3 swap router for tokens in a V3 pool, with the V3 factory and quoter used to find the pool and price a trade before it is sent. Wrapped ETH is the form of ETH the exchange understands, and USDG is the dollar-pegged token used to price things in dollars.
 
 ## The protocol's contracts
 
@@ -26,6 +26,7 @@ Each index also has its own vault, created by the index factory at the moment th
 - Open any address above on the explorer to see its code, its balance and every transaction it has been part of.
 - An index vault's page on the explorer shows the exact tokens it holds. Those holdings, divided by the index tokens in circulation, are the price. See [How the price works](/use-it/how-the-price-works).
 - The fee splitter's page shows every fee ever paid and where it went. See [Fees](/use-it/fees).
+- The contracts have not been audited yet. What has been tested, and what they can and cannot do, is on [Security and audits](/protocol/security-and-audits).
 
 :::note
 Contract addresses never change once deployed. If a page anywhere asks you to send funds to a different address for fractions.fi, it is not fractions.fi.
