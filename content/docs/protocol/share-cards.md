@@ -9,7 +9,7 @@ When you paste a fractions.fi link into X, Telegram, Discord or a message, the p
 
 ## The index card
 
-Every index page, `/i/<id>`, has one. It shows the index's picture (or, if there is none, the logos of its biggest tokens), the name and ticker, how many tokens are inside, who made it, and a strip of numbers: the price in ETH, what backs it, how many wallets hold it, the day's move, and the risk score with its band. A line at the bottom says when those numbers were last refreshed.
+Every index page, `/i/<id>`, has one. It shows the index's picture (or, if there is none, the logos of its biggest tokens), the name and ticker, how many tokens are inside, who made it, and a short strip: the day's move, how many tokens are inside, the risk score with its band, the creator, and whether it is trading yet. It does not show a price, a value or a holder count: those say little about a young index and get in the way of trading small ones. A line at the bottom says when those numbers were last refreshed.
 
 ## The "I bought" card
 
@@ -21,7 +21,7 @@ Every creator page, `/u/<handle>`, has a card too: the creator's name and pictur
 
 ## The cards update
 
-A card is not a screenshot. It is drawn again each time a link is unfurled or the image is requested, from the numbers at that moment. Share a link on Monday and open it on Friday and the price, holders and risk on the card are Friday's. The one thing fixed on a card is what it describes: which index, which purchase, which creator.
+A card is not a screenshot. It is drawn again each time a link is unfurled or the image is requested, from the numbers at that moment. Share a link on Monday and open it on Friday and the day's move and the risk on the card are Friday's. The one thing fixed on a card is what it describes: which index, which purchase, which creator.
 
 ## Sharing
 

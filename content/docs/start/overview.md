@@ -15,7 +15,7 @@ There is no company in the middle. The tokens sit in a vault on the chain, the p
 
 **Build your own.** Choose between {{ECON.MIN_TOKENS}} and {{ECON.MAX_TOKENS}} tokens, set their weights, put at least {{ECON.CREATE_MIN_DEPOSIT}} behind it. From then on you earn {{ECON.BUY_FEE_CREATOR}} of every buy and {{ECON.SELL_FEE_CREATOR}} of every sell, for as long as it trades. Read [Create an index](/use-it/create-an-index).
 
-**Share it.** Every index has a page and a picture card that carries its live price, holders and risk. So does every purchase, and every creator. Read [Share cards](/protocol/share-cards).
+**Share it.** Every index has a page and a picture card that carries its live 24-hour move, its composition and its risk. So does every purchase, and every creator. Read [Share cards](/protocol/share-cards).
 
 :::tip Start from a wallet
 You do not have to pick tokens one by one. Paste any {{CHAIN.NAME}} address on the Create page and the app turns what that wallet holds into an index draft, weighted the way the wallet is. See [Start from a wallet](/use-it/create-an-index#start-from-a-wallet).
@@ -37,7 +37,7 @@ You do not have to pick tokens one by one. Paste any {{CHAIN.NAME}} address on t
 | [Create]({{APP.URL}}/create) | Build an index, or start from a wallet |
 | [Portfolio]({{APP.URL}}/portfolio) | What you hold, what you have earned as a creator |
 | [Stake]({{APP.URL}}/stake) | Lock up $FRACTIONS and collect ETH |
-| `/i/<id>` | One index: chart, buy and sell, holders, share |
+| `/i/<id>` | One index: chart, composition, buy and sell, share |
 | `/u/<handle>` | One creator: their indexes, links, badges |
 
 :::note

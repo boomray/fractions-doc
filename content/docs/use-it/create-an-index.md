@@ -45,6 +45,6 @@ A wallet needs at least {{ECON.MIN_TOKENS}} eligible, priced tokens to become an
 
 ## After it is live
 
-- Your index page is `/i/<id>`. It has the chart, the buy and sell panel, the holders list and the share panel.
+- Your index page is `/i/<id>`. It has the chart, the composition with weights, the buy and sell panel, the creator and the share panel.
 - You earn {{ECON.BUY_FEE_CREATOR}} of every buy and {{ECON.SELL_FEE_CREATOR}} of every sell, in ETH, claimable any time from [Portfolio]({{APP.URL}}/portfolio). See [Fees](/use-it/fees).
 - Your creator page at `/u/<handle>` lists every index you have made. See [Creator profiles and badges](/protocol/creator-profiles-and-badges).
